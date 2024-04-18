@@ -1,0 +1,100 @@
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    /* Offset from navigation bar */
+    width: 100%;
+    height: calc(100vh - 4rem);
+    color: white;
+    filter: drop-shadow(0 0 5px #000000);
+}
+
+/* Animation for hero image */
+@keyframes hero-image-animation {
+    from {
+        transform: scale(1.025);
+        filter: brightness(.2); 
+    }
+    to {
+        /* Make it a bit darker so the text above it is actually visible */
+        filter: brightness(.5); 
+    }
+}
+
+.hero-image {
+    /* Make the image take the entire device's resolution */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    /* Crop the image to look good across all resolutions */
+    object-fit: cover;
+    /* Layer the image below the text */
+    z-index: -2;
+    pointer-events: none;
+
+    /* Animation when page is loaded */
+    animation-name: hero-image-animation;
+    animation-duration: 2s;
+    animation-fill-mode: forwards; /* make the animation keep its state after done */
+}
+
+/* Animation for hero text */
+@keyframes hero-text-animation {
+    from {
+        transform: scale(1.0125);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.hero > h1, .hero > h2 {
+    text-align: center;
+    margin: 0;
+    filter: drop-shadow(0 0 10px #000000); /* For visibility */
+    
+    /* Animation when page is loaded */
+    opacity: 0; /* make sure its invisible before animation plays */
+    animation-name: hero-text-animation;
+    animation-fill-mode: forwards;
+}
+
+.hero > h1 {
+    font-size: 3rem;
+
+    /* Text gradient using background clipping and text fill */
+    background: linear-gradient(#f5af19, #f12711);
+    background-clip: text;
+    color: transparent;
+
+    animation-delay: 0.25s;
+    animation-duration: 1s;
+}
+
+.hero > h2 {
+    animation-delay: 1.5s;
+    animation-duration: 1.5s;
+}
+
+a[href="#learn-more"] {
+    /* Move scroll button to where it belongs */
+    position: absolute;
+    top: 85%;
+    transform: translateY(-85%);
+    
+    transition: 0.2s;
+}
+
+a[href="#learn-more"] > img {
+    width: 2rem;
+}
+
+a[href="#learn-more"]:hover {
+    /* Add indicator when hovering over */
+    cursor: pointer;
+    filter: drop-shadow(0 0 7px #ffffff);
+}
